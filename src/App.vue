@@ -1,57 +1,78 @@
 <template>
-  <div id="gameApp" class="container">
+  <div id="app" class="container">
     <div class="title">
-      <h1>The Typing Game</h1>
+      <h1 class="mb-50">The Typing Game</h1>
     </div>
-    <button v-if="startFlg != true" class="startButton" @click="gameStart">
-      Game Start
-    </button>
-    <div v-if="startFlg" class="question-wrapper">
-      <div class="question">{{ currentQuestion }}</div>
-      <div v-if="currentQuestionCounts == questionCounts" class="message">Clear!</div>
-      <input v-model="typeBox" type="text" class="form" />
-      <div class="count">{{ currentQuestionCounts }} /{{ questionCounts }}</div>
+    <!-- <div>DONE</div> -->
+
+    <div id="app">
+      <div v-if="playing">
+        <div class="question mb-50">
+          <span>{{ pressd }}</span
+          >{{ word }}
+        </div>
+        <div class="missCount">miss:{{ miss }}</div>
+      </div>
+      <div v-else class="start mb-50">Push "Space Key"</div>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "gameApp",
   data() {
     return {
       startFlg: "",
-      currentQuestion: "",
-      questions: [
+      words: [
         "Hello World",
         "console.log",
         "npm run serve",
         "git add -A",
         "export default",
       ],
-      typeBox: "",
-      currentQuestionCounts: 0,
-      questionCounts: 0,
+      word: "",
+      pressd: "",
+      miss: 0,
+      playing: false,
     };
   },
-
+  created() {
+    addEventListener("keydown", (e) => {
+      if (e.key !== " " || this.playing) {
+        return;
+      }
+      this.playing = true;
+      this.setWord();
+      this.keyDown();
+    });
+  },
   methods: {
+    setWord() {
+      this.word = this.words.splice(
+        Math.floor(Math.random() * this.words.length),
+        1
+      )[0];
+    },
+    keyDown() {
+      addEventListener("keydown", (e) => {
+        if (e.key !== this.word[0]) {
+          this.miss++;
+          return;
+        }
+        this.pressd += e.key;
+        this.word = this.word.slice(1);
+        if (this.word.length === 0) {
+          this.pressd = "";
+          if (this.words.length === 0) {
+            this.word = "DONE!";
+            return;
+          }
+          this.setWord();
+        }
+      });
+    },
     gameStart: function () {
       this.startFlg = true;
-    },
-  },
-  mounted: function () {
-    this.currentQuestion = this.questions[0];
-    this.questionCounts = this.questions.length;
-  },
-  watch: {
-    typeBox: function (e) {
-      if (e === this.currentQuestion) {
-        this.questions.splice(0, 1);
-        this.currentQuestion = this.questions[0];
-        this.typeBox = "";
-        this.currentQuestionCounts = this.currentQuestionCounts + 1
-      }
     },
   },
 };
@@ -67,7 +88,8 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  font-size: 32px;
+  font-size: 58px;
+  letter-spacing: 3px;
 }
 .container {
   background-color: #7ba889;
@@ -75,29 +97,23 @@ export default {
   height: 100vh;
 }
 
-.startButton {
-  margin-bottom: 20px;
-  padding: 10px 20px;
-}
-
 h1 {
-  font-size: 60px;
+  color: #fff;
+  font-size: 100px;
   padding: 50px 0;
 }
-.question {
-  padding: 20px 0;
-}
-.message {
-  padding: 20px 0;
-}
-.form {
-  outline: none;
-  border: none;
-  width: 500px;
-  padding: 10px 0;
-}
-.count {
-  margin-top: 20px;
+
+.mb-50 {
+  margin-bottom: 50px;
 }
 
+.missCount {
+  font-size: 32px;
+}
+
+span {
+  opacity: 0.8;
+  color: red;
+  font-size: 48px;
+}
 </style>
