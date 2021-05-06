@@ -1,10 +1,10 @@
-import Vue from 'vue'
-import App from './App.vue'
-import VueTyperPlugin from "vue-typer";
+import Vue from "vue";
+import App from "./App.vue";
+import router from "./plugins/Router";
 
-Vue.config.productionTip = false
-Vue.use(VueTyperPlugin);
+Vue.config.productionTip = false;
 
 new Vue({
-  render: h => h(App),
-}).$mount('#app')
+  router,
+  render: (h) => h(App),
+}).$mount("#app");
