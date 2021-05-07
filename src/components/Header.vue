@@ -49,24 +49,24 @@ export default {
 a {
   color: inherit;
   width: 50%;
-  font-size: 0.6rem;
+  font-size: .5rem;
   position: relative;
   display: inline-block;
   text-decoration: none;
 }
 a::after {
   position: absolute;
-  bottom: 5px;
+  bottom: 16px;
   left: 0;
   right: 0;
   margin: auto;
-  content: '';
+  content: "";
   width: 160px;
   height: 2px;
   background: #222;
   transform: scale(0, 1);
   transform-origin: center;
-  transition: transform .5s;
+  transition: transform 0.5s;
 }
 a:hover::after {
   transform: scale(1, 1);
@@ -74,5 +74,4 @@ a:hover::after {
 .header h4 {
   font-size: 0.8rem;
 }
-
 </style>

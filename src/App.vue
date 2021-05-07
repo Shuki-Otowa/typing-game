@@ -24,21 +24,20 @@ export default {
   color: #222;
   margin: 0;
   padding: 0;
-  font-family: "TsukuARdGothic-Regular",
-    "ヒラギノ丸ゴ ProN", "ヒラギノ角ゴシック", "Hiragino Sans",
-    "Hiragino Maru Gothic ProN", "Osaka", YuGothic, "Yu Gothic", "Yu Gothic UI",
-    "メイリオ", Meiryo, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  font-size: 52px;
   letter-spacing: 3px;
+  font-size: 52px;
 }
 
+
 .main {
+  font-family: "ヒラギノ丸ゴ ProN", "ヒラギノ角ゴシック", "Hiragino Sans",
+    "Hiragino Maru Gothic ProN", "Osaka", YuGothic, "Yu Gothic", "Yu Gothic UI",
+    "メイリオ", Meiryo, sans-serif;
   width: 100vw;
   height: 100vh;
-  /* padding-top: 80px; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -46,18 +45,25 @@ export default {
 
 .wrapper {
   max-width: 1280px;
+  width: 100%;
 }
 
-.question {
-  /* font-size: 1.8rem; */
+.font18 {
+  font-size: 1.8rem;
+  font-weight: bold;
 }
 .miss-count {
-  margin-top: 30px;
+  margin-top: 10px;
 }
 
-.input {
-  /* font-size: 1.6rem; */
-  color: #EF454A;
-  /* border-bottom: 6px #EF454A solid; */
+.question-count {
+  font-size: .8rem;
+  margin-bottom: -10px;
 }
+.input {
+  font-size: 1.6rem;
+  color: #ef454a;
+  border-bottom: 6px #ef454a solid;
+}
+
 </style>

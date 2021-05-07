@@ -3,7 +3,6 @@
     <p>{{interval.toFixed(2)}}</p> <!-- 小数2桁まで表示 -->
     <button @click="startTimer()" v-show="!active">Start</button>
     <button @click="stopTimer()" v-show="active">Stop</button>
-    <button @click="resetTimer()">Reset</button>
 </div>
 </template>
 
@@ -30,11 +29,6 @@ export default {
             this.accum = this.interval;
             clearInterval(this.timer);
         },
-        resetTimer(){
-            this.interval = 0;
-            this.accum = 0;
-            this.start = Date.now();
-        }
     }
 }
 </script>

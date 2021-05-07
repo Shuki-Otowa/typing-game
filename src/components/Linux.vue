@@ -2,8 +2,8 @@
   <div id="git" class="main">
     <div class="wrapper">
       <div v-if="playing" class="question">
-        <span class="input">{{ pressd }}</span>
-        {{ word }}
+        <span class="input">{{ pressd }}</span
+        >{{ word }}
         <div class="miss-count">miss:{{ miss }}</div>
       </div>
       <div v-else class="start game">Push "Space Key"</div>
@@ -66,7 +66,6 @@ export default {
 </script>
 <style scoped>
 .main {
-    background: #646F75;
+  background: #646f75;
 }
-
 </style>
