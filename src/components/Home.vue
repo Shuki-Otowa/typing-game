@@ -1,27 +1,23 @@
 <template>
   <div id="home" class="main">
-    <div class="wrapper">
-      <div class="typer">
-        <vue-typer
-          :text="['The Typing Game']"
-          :preTypeDelay="500"
-          :typeDelay="100"
-          erase-style="clear"
-          class="lead"
-        ></vue-typer>
-      </div>
+    <div class="typer">
+      <vue-typer
+        :text="['The Typing Game']"
+        :preTypeDelay="500"
+        :typeDelay="100"
+        erase-style="clear"
+        class="lead"
+      ></vue-typer>
     </div>
   </div>
 </template>
 
 <style scoped>
 .main {
-  background: #6d96aa;
+  background: #87AD96;
 }
 .typer {
-  font-size: 100px;
-  width: 100%;
+  font-size: 6rem;
   font-family: Copperplate, "Copperplate Gothic Light";
 }
-
 </style>

@@ -1,71 +1,105 @@
 <template>
-  <div id="git" class="main">
-    <div class="wrapper">
-      <div v-if="playing" class="question">
-        <span class="input">{{ pressd }}</span
-        >{{ word }}
-        <div class="miss-count">miss:{{ miss }}</div>
+  <div id="linux" class="main">
+    <div v-if="isPlaying" class="font-md">
+      <div v-if="isComplete" class="font-lg mt">Your Result</div>
+      <div v-if="!isComplete" class="question-count font-sm">
+        {{ currentQuestionCounts }}/{{ questionCounts }}
       </div>
-      <div v-else class="start game">Push "Space Key"</div>
+      <div class="font-lg">
+        <span class="input">{{ pressd }}</span
+        >{{ question }}
+      </div>
+      <div class="miss-count font-md">miss: {{ missCount }}</div>
+      <div class="font-md">
+        <p>time: {{ interval.toFixed(2) }}</p>
+        <!-- 小数2桁まで表示 -->
+      </div>
     </div>
+    <div v-else class="font-md">Push "Space Key"</div>
   </div>
 </template>
 
 <script>
 export default {
+  name: "linux",
   data() {
     return {
-      startFlg: "",
-      words: ["git a", "git b", "git c"],
-      word: "",
+      questions: [
+        "git init",
+        "git push origin master",
+        "git add .",
+        "git commit",
+        "git branch hoge",
+        "git checkout hoge",
+        "git merge hoge",
+        "git status",
+        "git log --oneline",
+        "git rm hoge",
+      ],
+      isPlaying: false,// ゲームの実行
+      isActive: false, // タイマーの実行
+      isComplete: false, //ゲーム終了のフラグ
+      question: "",
       pressd: "",
-      miss: 0,
-      playing: false,
+      missCount: 0, // ミスタイプのカウント
+      currentQuestionCounts: 1, // 現在の問題数
+      questionCounts: " ", // 総問題数
+      start: 0, // startを押した時刻
+      timer: 0, // setInterval()の格納用
+      interval: 0, // 計測時間
     };
   },
-  created() {
+  mounted() {
     addEventListener("keydown", (e) => {
-      if (e.key !== " " || this.playing) {
+      if (e.key !== " " || this.isPlaying) {
         return;
       }
-      this.playing = true;
-      this.setWord();
+      this.isPlaying = true;
+      this.isActive = true;
+      this.setquestion();
       this.keyDown();
+      this.start = Date.now();
+      this.timer = setInterval(() => {
+        this.interval = (Date.now() - this.start) * 0.001;
+      }, 10); // 10msごとに現在時刻とstartを押した時刻の差を足す
+      this.questionCounts = this.questions.length + 1;
     });
   },
   methods: {
-    setWord() {
-      this.word = this.words.splice(
-        Math.floor(Math.random() * this.words.length),
+    setquestion() {
+      this.question = this.questions.splice(
+        Math.floor(Math.random() * this.questions.length),
         1
       )[0];
     },
     keyDown() {
       addEventListener("keydown", (e) => {
-        if (e.key !== this.word[0]) {
-          this.miss++;
+        if (e.key !== this.question[0]) {
+          this.missCount++;
           return;
         }
         this.pressd += e.key;
-        this.word = this.word.slice(1);
-        if (this.word.length === 0) {
+        this.question = this.question.slice(1);
+        if (this.question.length === 0) {
           this.pressd = "";
-          if (this.words.length === 0) {
-            this.word = "DONE!";
+          if (this.questions.length === 0) {
+            this.isComplete = true;
+            this.isActive = false;
+            clearInterval(this.timer);
             return;
           }
-          this.setWord();
+          this.missCount++;
+          this.setquestion();
+          this.currentQuestionCounts = this.currentQuestionCounts + 1;
         }
       });
-    },
-    gameStart: function () {
-      this.startFlg = true;
     },
   },
 };
 </script>
+
 <style scoped>
 .main {
-  background: #646f75;
+  background: #F0AFBF;
 }
 </style>

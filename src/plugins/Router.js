@@ -14,13 +14,11 @@ export default new VueRouter({
       path: "/",
       name: "home",
       component: Home,
-
     },
     {
       path: "/git",
       name: "git",
       component: Git,
-
     },
     {
       path: "/js",

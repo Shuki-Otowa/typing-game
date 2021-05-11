@@ -1,44 +1,40 @@
 <template>
-  <div id="git" class="main">
-    <div class="wrapper">
-      <div v-if="isPlaying" class="font18">
-        <div v-if="isComplete" class="font18">Your Result</div>
-        <div v-if="!isComplete" class="question-count">
-          {{ currentQuestionCounts }}/{{ questionCounts }}
-        </div>
-        <div class="font18  ">
-          <span class="input">{{ pressd }}</span
-          >{{ question }}
-        </div>
-        <div class="miss-count">miss: {{ missCount }}</div>
-        <div>
-          <p>time: {{ interval.toFixed(2) }}</p>
-          <!-- 小数2桁まで表示 -->
-        </div>
+  <div id="js" class="main">
+    <div v-if="isPlaying" class="font-md">
+      <div v-if="isComplete" class="font-lg mt">Your Result</div>
+      <div v-if="!isComplete" class="question-count font-sm">
+        {{ currentQuestionCounts }}/{{ questionCounts }}
       </div>
-      <div v-else class="start game">Push "Space Key"</div>
+      <div class="font-lg">
+        <span class="input">{{ pressd }}</span
+        >{{ question }}
+      </div>
+      <div class="miss-count font-md">miss: {{ missCount }}</div>
+      <div class="font-md">
+        <p>time: {{ interval.toFixed(2) }}</p>
+        <!-- 小数2桁まで表示 -->
+      </div>
     </div>
+    <div v-else class="font-md">Push "Space Key"</div>
   </div>
 </template>
 
 <script>
 export default {
+  name: "js",
   data() {
     return {
       questions: [
-        "git add",
-        "bbbb",
-        "cccc",
-        // "git init",
-        // "git push origin master",
-        // "git add .",
-        // "git commit",
-        // "git branch hoge",
-        // "git checkout hoge",
-        // "git merge hoge",
-        // "git status",
-        // "git log --oneline",
-        // "git rm hoge",
+        "git init",
+        "git push origin master",
+        "git add .",
+        "git commit",
+        "git branch hoge",
+        "git checkout hoge",
+        "git merge hoge",
+        "git status",
+        "git log --oneline",
+        "git rm hoge",
       ],
       isPlaying: false,
       isActive: false, // タイマーの実行
@@ -51,7 +47,7 @@ export default {
       start: 0, // startを押した時刻
       timer: 0, // setInterval()の格納用
       interval: 0, // 計測時間
-    };                      
+    };
   },
   mounted() {
     addEventListener("keydown", (e) => {
@@ -85,14 +81,13 @@ export default {
         this.pressd += e.key;
         this.question = this.question.slice(1);
         if (this.question.length === 0) {
-            this.pressd = "";
+          this.pressd = "";
           if (this.questions.length === 0) {
-              this.isComplete = true;
+            this.isComplete = true;
             this.isActive = false;
             clearInterval(this.timer);
             return;
           }
-          this.missCount++;
           this.setquestion();
           this.currentQuestionCounts = this.currentQuestionCounts + 1;
         }
@@ -104,10 +99,6 @@ export default {
 
 <style scoped>
 .main {
-  background: #878650;
-}
-.time-count {
-  display: flex;
-  justify-content: center;
+  background: #e2ccac;
 }
 </style>

@@ -28,7 +28,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   letter-spacing: 3px;
-  font-size: 52px;
 }
 
 
@@ -43,27 +42,31 @@ export default {
   align-items: center;
 }
 
-.wrapper {
-  max-width: 1280px;
-  width: 100%;
-}
-
-.font18 {
-  font-size: 1.8rem;
+.font-lg {
+  font-size: 6rem;
   font-weight: bold;
+}
+.font-md {
+  font-size: 3rem;
+  font-weight: bold;
+}
+.font-sm {
+  font-size: 2rem;
+  font-weight: bold;
+}
+.mt {
+  margin-top: 38px;
 }
 .miss-count {
   margin-top: 10px;
 }
 
 .question-count {
-  font-size: .8rem;
   margin-bottom: -10px;
 }
 .input {
-  font-size: 1.6rem;
   color: #ef454a;
   border-bottom: 6px #ef454a solid;
+  padding-bottom: 15px;
 }
-
 </style>

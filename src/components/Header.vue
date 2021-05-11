@@ -32,31 +32,34 @@ export default {
 };
 </script>
 
+
 <style>
 .header {
+  font-family: "ヒラギノ丸ゴ ProN", "ヒラギノ角ゴシック", "Hiragino Sans",
+    "Hiragino Maru Gothic ProN", "Osaka", YuGothic, "Yu Gothic", "Yu Gothic UI",
+    "メイリオ", Meiryo, sans-serif;
   font-weight: bold;
-  line-height: 80px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   justify-items: center;
+  align-items: center;
   background: transparent;
   position: fixed;
   top: 0;
   width: 100%;
   height: 80px;
 }
-
 a {
   color: inherit;
   width: 50%;
-  font-size: .5rem;
+  font-size: 1.6rem;
   position: relative;
   display: inline-block;
   text-decoration: none;
 }
 a::after {
   position: absolute;
-  bottom: 16px;
+  bottom: 0;
   left: 0;
   right: 0;
   margin: auto;
